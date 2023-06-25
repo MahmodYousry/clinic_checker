@@ -25,7 +25,6 @@ Route::prefix('/admin')->group(function () {
 
     Route::get('/patients', [AdminHomeController::class, 'patients'])->name('manage_patients');
 
-
     // admin blog
     Route::resource('/doctors', AdminHomeController::class);
     Route::resource('/blog', BlogController::class);
@@ -39,6 +38,7 @@ Route::prefix('/patient')->group(function () {
     // Image Examine
     Route::post('/examine', [CheckupController::class, 'examine'])->name('examine');
     //Route::get('/response', [CheckupController::class, 'patientReport'])->name('response');
+
     // patient blog
     Route::resource('/patient_blog', PatientBlogController::class);
     Route::resource('/patient', PatientHomeController::class);
