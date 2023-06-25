@@ -1,0 +1,61 @@
+
+
+/* Navbar Edites */
+
+
+/* in the sidebar background */
+#page-container.sidebar-dark #sidebar {
+    background-color: #3964AE;
+}
+
+/* in projects index page */
+.custom-gap {
+    gap: 22px;
+}
+
+.feature-head {
+    font-weight: bold;
+}
+
+.features-create-project {
+    box-shadow: 0px 0px 2px 0px #878787;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.features-create-project .dataTables_info {
+    display: none;
+}
+
+#img_upload_gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px 1%;
+    background: #eee;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+#img_upload_gallery img {
+    width: 270px;
+    border-radius: 15px;
+}
+.bg-white-5 {
+    background-color: transparent !important;
+}
+
+.nav-main-link {
+    color: #fff !important;
+}
+
+.nav-main-link.active {
+    background-color: #25499c;
+}
+
+#page-header {
+    background-color: #3964AE;
+}
+
+
