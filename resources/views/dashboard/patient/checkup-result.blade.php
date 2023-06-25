@@ -334,9 +334,9 @@ button.print-button:hover .print-icon::after {
 @section('content')
 <main id="main-container">
     <!-- Loader -->
-    {{-- <div id="my-loader" class="layout-loader">
+    <div id="my-loader" class="layout-loader">
         <i class="fa fa-close"></i>
-    </div> --}}
+    </div>
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">

@@ -30,8 +30,6 @@ Route::prefix('/admin')->group(function () {
     Route::resource('/blog', BlogController::class);
 });
 
-// this is my comment hoda
-
 /**
  * Patient Routes
  */
