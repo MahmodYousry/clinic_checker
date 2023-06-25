@@ -25,6 +25,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::get('/patients', [AdminHomeController::class, 'patients'])->name('manage_patients');
 
+
     // admin blog
     Route::resource('/doctors', AdminHomeController::class);
     Route::resource('/blog', BlogController::class);
