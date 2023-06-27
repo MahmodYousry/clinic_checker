@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('cover_image');
-            $table->string('title');
-            $table->longText('article');
             $table->timestamps();
         });
     }
