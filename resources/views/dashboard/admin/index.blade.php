@@ -41,7 +41,7 @@
 
                 <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card mb-4 border-0" data-toggle="appear" data-offset="50" data-class="animated fadeIn">
-                        <img class="card-img-top" style="max-height: 345px;" src="https://aonanghospital.com/upload/doctor-20220510115235.jfif" alt="Card image cap">
+                        <img class="card-img-top" style="max-height: 345px;" src="https://hips.hearstapps.com/hmg-prod/images/portrait-of-a-happy-young-doctor-in-his-clinic-royalty-free-image-1661432441.jpg?crop=0.66698xw:1xh;center,top&resize=1200:*" alt="Card image cap">
                         <div class="card-body">
                           <h5 class="h5 mb-1">Card title</h5>
                           <p class="font-size-sm text-muted">Some quick example text to build</p>

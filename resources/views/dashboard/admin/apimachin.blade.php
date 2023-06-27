@@ -1,51 +1,51 @@
 @extends('layouts.admin_master')
 
 @section('css_adds')
-<style>
+    <style>
+        .update_btn {
+            padding: .5rem 2rem;
+            background-color: #66ACFF;
+            color: #1f1f1f;
+            border-radius: 200px;
+        }
 
-    .update_btn {
-        padding: .5rem 2rem;
-        background-color: #66ACFF;
-        color: #1f1f1f;
-        border-radius: 200px;
-    }
+        .url_area {
+            padding: 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            background-color: #a7a7a7;
+            border-radius: 200px;
+            width: fit-content;
+            margin: auto;
+        }
 
-    .url_area {
-        padding: 0.75rem 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5rem;
-        background-color: #a7a7a7;
-        border-radius: 200px;
-        width: fit-content;
-        margin: auto;
-    }
+        .url_area span {
+            color: #1f1f1f;
+            position: relative;
+            font-weight: bold;
+        }
 
-    .url_area span {
-        color: #1f1f1f;
-        position: relative;
-        font-weight: bold;
-    }
+        .url_area span::after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #00ff29;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
 
-    .url_area span::after {
-        content: '';
-        position: absolute;
-        left: -20px;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: #00ff29;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-    }
-
-    .url_area p {
-        margin: 0;
-        color: #1f1f1f;
-        font-weight: bold;
-    }
-</style>
+        .url_area p {
+            margin: 0;
+            color: #1f1f1f;
+            font-weight: bold;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -79,14 +79,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="text-center mb-5">API Machine Learning</h2>
-                            <div class="d-flex justify-content-center align-items-center gap-5 my-5">
-                                <p class="font-weight-bold text-capitalize m-0">Update Api Url</p>
-                                <input class="form-control w-50 mx-4" type="text">
-                                <button class="btn btn-primary btn-md update_btn" type="submit">Update</button>
-                            </div>
+                            <form id="api_url_form" action="{{route('update_api_url')}}" method="post">
+                                @csrf
+                                <div class="d-flex justify-content-center align-items-center gap-5 my-5">
+                                    <p class="font-weight-bold text-capitalize m-0">Update Api Url</p>
+                                    <input class="form-control w-50 mx-4" type="text" name="link">
+                                    <button class="btn btn-primary btn-md update_btn" type="submit">Update</button>
+                                </div>
+                            </form>
                             <div class="my-5 url_area">
                                 <span>Active Url</span>
-                                <p>https://saldklakdsls.com</p>
+                                <p id="link_replace">https://saldklakdsls.com</p> <!-- active -->
                             </div>
                         </div>
                     </div>
@@ -95,4 +98,37 @@
         </div>
 
     </main>
+
 @endsection
+
+@section('scripts')
+    <script>
+        setInterval(function() {
+            $.ajax({
+                type: "get",
+                url: "{{ route('get_active_url') }}",
+                datatype: "html",
+                success: function(data) {
+                    // do something with response data
+                    // console.log(data);
+                    $('#link_replace').html(data);
+                }
+            });
+        }, 1000);
+
+        $('#api_url_form').onSubmit(
+            $.ajax({
+                type: "post",
+                url: "{{ route('update_api_url') }}",
+                datatype: "html",
+                success: function(data) {
+                    // do something with response data
+
+                    console.log(data);
+
+                    // $('#link_replace').html(data);
+                }
+            });
+        );
+    </script>
+@endsection;

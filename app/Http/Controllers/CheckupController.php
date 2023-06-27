@@ -91,4 +91,9 @@ class CheckupController extends Controller
         $patient_name = 'hoda';
         return view('dashboard.patient.checkup-result', compact('patient_name', 'disease_name'));
     }
+    public function website()
+    {
+        return view('website.pages.website');
+    }
+
 }
