@@ -63,7 +63,7 @@ class CheckupController extends Controller
 
     public function examine(Request $request)
     {
-        $validatetion = $request->validate([
+        $validation = $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -73,13 +73,11 @@ class CheckupController extends Controller
 
         // $request->image->move(public_path('images'), $imageName);
 
-        if ($validatetion) {
+        if ($validation) {
             return $this->analysis($file->getClientOriginalName()); // it takes 30 seconds to return response
         } else {
             return 'valiation Error';
         }
-
-
     }
 
     public function analysis($imagePath) {

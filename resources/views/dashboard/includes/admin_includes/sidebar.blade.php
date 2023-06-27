@@ -33,11 +33,11 @@
                     <ul class="nav-main">
                         {{-- <li class="nav-main-heading">Main Section</li> --}}
                         <li class="nav-main-item py-3">
-                            <a class="nav-main-link" href="{{ route('doctors.index') }}">
+                            <a class="nav-main-link" href="{{ route('admin_home') }}">
                                 <i class="nav-main-link-icon si si-speedometer"></i>
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
-                            <a class="nav-main-link" href="{{ route('admin_home') }}">
+                            <a class="nav-main-link" href="{{ route('doctors.index') }}">
                                 <i class="nav-main-link-icon fa fa-user-md"></i>
                                 <span class="nav-main-link-name">Doctors</span>
                             </a>

@@ -20,10 +20,13 @@ Route::get('/', [CheckupController::class, 'website'])->name('website');
  */
 Route::prefix('/admin')->group(function () {
 
+    // Ajax Routes Only
+    Route::get('/get-active-url', [AdminHomeController::class, 'getActiveUrl'])->name('get_active_url');
+
+    //
     Route::post('/update_api_url', [AdminHomeController::class, 'updateApiUrl'])->name('update_api_url');
 
     Route::get('/apimachin', [AdminHomeController::class, 'apimachin'])->name('apimachin');
-    Route::get('/get-active-url', [AdminHomeController::class, 'getActiveUrl'])->name('get_active_url');
     Route::get('/settings', [AdminHomeController::class, 'settings'])->name('settings');
     Route::get('/home', [AdminHomeController::class, 'home'])->name('admin_home');
 

@@ -1,6 +1,7 @@
 @extends('layouts.admin_master')
 
 @section('css_adds')
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         .update_btn {
             padding: .5rem 2rem;
@@ -83,7 +84,7 @@
                                 @csrf
                                 <div class="d-flex justify-content-center align-items-center gap-5 my-5">
                                     <p class="font-weight-bold text-capitalize m-0">Update Api Url</p>
-                                    <input class="form-control w-50 mx-4" type="text" name="link">
+                                    <input class="form-control w-50 mx-4 link" type="text" name="link">
                                     <button class="btn btn-primary btn-md update_btn" type="submit">Update</button>
                                 </div>
                             </form>
@@ -103,32 +104,42 @@
 
 @section('scripts')
     <script>
-        setInterval(function() {
+        window.onload = function() {
+            var $data = { 'link': $('.link').val() }
             $.ajax({
                 type: "get",
                 url: "{{ route('get_active_url') }}",
+                data: $data,
                 datatype: "html",
                 success: function(data) {
-                    // do something with response data
-                    // console.log(data);
+                    // put the link data into the div as html
                     $('#link_replace').html(data);
                 }
             });
-        }, 1000);
+        }
 
-        $('#api_url_form').onSubmit(
+        // Form Submit Ajax Call
+        $('#api_url_form').on('submit', function (e) {
+            e.preventDefault();
+
+            var $data = { 'link': $('.link').val() }
+
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+            });
+
             $.ajax({
                 type: "post",
                 url: "{{ route('update_api_url') }}",
-                datatype: "html",
+                data: $data,
+                datatype: "json",
                 success: function(data) {
-                    // do something with response data
-
-                    console.log(data);
-
-                    // $('#link_replace').html(data);
+                    // get the data then turn in into js object to handle
+                    var goodData = JSON.parse(data);
+                    // put the link data into the div as html
+                    $('#link_replace').html(goodData.link);
                 }
             });
-        );
+        });
     </script>
 @endsection;

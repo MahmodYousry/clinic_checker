@@ -3,61 +3,81 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $doctors = Doctor::all();
+        return view('dashboard.admin.index', compact('doctors'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('dashboard.admin.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        
+
+        // Validate First
+        $valiation = $request->validate([
+            'first_name'        => 'required',
+            'last_name'         => 'required',
+            'email'             => 'required|email',
+            'gender'            => 'required',
+            'photo'             => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'phone'             => 'required',
+            'speciality'        => 'required',
+            'address'           => 'required',
+            'facebook_profile'  => 'required',
+        ]);
+
+        // if Image File
+        if ($request->hasfile('photo')) {
+            // Asign Photo Name
+            $photoName = $request->photo->getClientOriginalName();
+            $file = $request->file('photo');
+
+            // Make Folder with doctors_photos if not exist then move the photo there
+            $file->storeAs('doctors_photos/', $photoName);
+
+            // Store Every Field
+            $newStore = new Doctor();
+            $newStore->first_name           = $request->first_name;
+            $newStore->last_name            = $request->last_name;
+            $newStore->email                = $request->email;
+            $newStore->gender               = $request->gender;
+            $newStore->photo                = $photoName;
+            $newStore->phone                = $request->phone;
+            $newStore->speciality           = $request->speciality;
+            $newStore->address              = $request->address;
+            $newStore->facebook_page_link   = $request->facebook_profile;
+            $newStore->save();
+
+        }
+
+        return redirect()->route('doctors.index')->with('success', 'Data Has Been Saved Successfuly !');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        return view('dashboard.admin.edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

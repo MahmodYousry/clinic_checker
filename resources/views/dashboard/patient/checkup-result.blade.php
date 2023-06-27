@@ -543,9 +543,7 @@ button.print-button:hover .print-icon::after {
 <script>
     var pageLoader = document.getElementById('my-loader');
     window.onload = setTimeout(function () {
-
         pageLoader.classList.add('layout-hide');
-
     }, 3000);
 
 </script>
