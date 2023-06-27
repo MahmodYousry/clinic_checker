@@ -28,7 +28,8 @@
                     <h3 class="block-title">Doctor Registration Information</h3>
                 </div>
                 <div class="block-content block-content-full">
-                    <form action="be_forms_elements.html" method="POST">
+                    <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-6 col-xl-6">
                                 <div class="form-group">
