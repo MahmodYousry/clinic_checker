@@ -28,34 +28,36 @@
                     <h3 class="block-title">Edit Doctor Information</h3>
                 </div>
                 <div class="block-content block-content-full">
-                    <form action="be_forms_elements.html" method="POST">
+                    <form action="{{ route('doctors.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-lg-6 col-xl-6">
                                 <div class="form-group">
                                     <label for="first_name">First Name</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+                                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" value="{{ $doctor->first_name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="gender">Select Gender</label>
                                     <select class="form-control" id="gender" name="gender">
-                                        <option value="0" disabled>Please select</option>
+                                        <option value="{{ $doctor->gender }}" {{ ($doctor->gender == $doctor->gender) ? 'selected' : "" }} >{{$doctor->gender}}</option>
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="speciality">Speciality</label>
-                                    <textarea class="form-control" id="speciality" name="speciality" rows="5" placeholder="Speciality.."></textarea>
+                                    <textarea class="form-control" id="speciality" name="speciality" rows="5" placeholder="Speciality..">{{ $doctor->speciality }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <textarea class="form-control" id="address" name="address" rows="5" placeholder="Address.."></textarea>
+                                    <textarea class="form-control" id="address" name="address" rows="5" placeholder="Address..">{{ $doctor->address }}</textarea>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-xl-6">
                                 <div class="form-group">
                                     <label for="last_name">Last Name</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" value="{{ $doctor->last_name }}">
                                 </div>
 
                                 <div class="form-group">
@@ -68,15 +70,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number">
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" value="{{ $doctor->phone }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ $doctor->email }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="facebook_profile">Facebook Profile</label>
-                                    <input type="text" class="form-control" id="facebook_profile" name="facebook_profile" placeholder="facebook profile link">
+                                    <input type="text" class="form-control" id="facebook_profile" name="facebook_profile" value="{{ $doctor->facebook_page_link }}" placeholder="facebook profile link">
                                 </div>
 
                             </div>
