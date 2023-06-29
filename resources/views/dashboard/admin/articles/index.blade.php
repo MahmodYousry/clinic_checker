@@ -66,8 +66,9 @@
                             <div class="block-content">
                                 <div class="row items-push">
                                     <div class="col-md-4 col-lg-5">
-                                        <a href="">
-                                            <img class="img-fluid" src="{{ asset('dashboard/assets/media/photos/photo21.jpg') }}" alt="">
+                                        <a href="{{ route('blog.show', $post->id) }}">
+
+                                            <img class="img-fluid" src="{{ $post->cover_image ? asset('storage/posts_thumbnail/'.$post->cover_image) : asset('dashboard/assets/media/photos/photo21.jpg') }}" alt="">
                                         </a>
                                     </div>
                                     <div class="col-md-8 col-lg-7">
@@ -75,18 +76,18 @@
                                             <a class="text-primary-dark" href="">{{ $post['title'] }}</a>
                                         </h4>
                                         <div class="font-size-sm mb-3">
-                                            <a href="be_pages_generic_profile.html">Susan Day</a> on July 16, 2019 · <em class="text-muted">10 min</em>
+                                            <a href="#">Susan Day</a> on July 16, 2019 · <em class="text-muted">10 min</em>
                                         </div>
                                         <p class="font-size-sm">
                                             {{-- {{Str::words($post->content, 30)}} --}}
                                             description Soon
                                         </p>
                                         <div class="action">
-                                            <a class="btn btn-sm btn-light animated fadeInLeft" href="{{ route('blog.show', 1) }}">
+                                            <a class="btn btn-sm btn-light animated fadeInLeft" href="{{ route('blog.show', $post->id) }}">
                                                 <i class="fa fa-eye mx-1"></i> continue reading
                                             </a>
-                                            <a class="btn btn-sm btn-primary animated fadeInDown" href="#"><i class="fa fa-edit mx-1"></i> Edit</a>
-                                            <form method="POST" action="#" class="d-inline">
+                                            <a class="btn btn-sm btn-primary animated fadeInDown" href="{{ route('blog.edit', $post->id) }}"><i class="fa fa-edit mx-1"></i> Edit</a>
+                                            <form method="POST" action="{{ route('blog.destroy', $post->id) }}" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger d-inline animated fadeInRight"><i class="fa fa-trash mx-1"></i> delete</button>
