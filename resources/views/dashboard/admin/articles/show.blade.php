@@ -29,7 +29,7 @@
                 <div class="text-center font-size-sm push">
                     <h1 class="text-black mt-3 invisible" data-toggle="appear" data-class="animated fadeIn">{{ $post['title'] }}</h1>
                     <span class="d-inline-block py-2 px-4 bg-body-light rounded">
-                        <a class="link-effect font-w600" href="be_pages_generic_profile.html">John Doe</a> on {{ $post->created_at }} July 16, 2019 &bull; <em>{{ $post->created_at->diffForHumans() }}</em>
+                        <a class="link-effect font-w600" href="#">John Doe</a> on {{ $post->created_at }} July 16, 2019 &bull; <em>{{ $post->created_at->diffForHumans() }}</em>
                     </span>
                 </div>
                 <div class="row justify-content-center">
