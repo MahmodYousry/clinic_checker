@@ -28,12 +28,50 @@
         <!-- END Hero -->
         <!-- Page Content -->
         <div class="content content-boxed">
+            {{-- errors And Alerts --}}
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <p class="mb-0">{{ $error }}</p>
+                    </div>
+                @endforeach
+            @endif
+            @if(session('success'))
+                <div class="alert alert-success d-flex align-items-center animated fadeInDown" role="alert">
+                    <div class="flex-00-auto">
+                        <i class="fa fa-fw fa-check"></i>
+                    </div>
+                    <div class="flex-fill ml-3">
+                        <p class="mb-0 text-capitalize">{{ session('success') }}</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger d-flex align-items-center animated fadeInDown" role="alert">
+                    <div class="flex-00-auto">
+                        <i class="far fa-sad-tear fa-fw"></i>
+                    </div>
+                    <div class="flex-fill ml-3">
+                        <p class="mb-0 text-capitalize">{{ session('error') }}</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            @endif
+            {{-- end errors And Alerts --}}
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">new Article</h3>
                 </div>
                 <div class="block-content">
-                    <form action="{{ route('blog.store') }}" method="POST">
+                    <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-lg-12 col-xl-12">
                             <div class="form-group">
@@ -45,7 +83,7 @@
                                 <div class="custom-file">
                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
                                     <input type="file" class="custom-file-input" data-toggle="custom-file-input"
-                                            id="blogImage" name="blogImage">
+                                            id="blogImage" name="thumbnail">
                                     <label class="custom-file-label" for="blogImage">Choose Thumbnail Image </label>
                                 </div>
                             </div>
@@ -55,7 +93,8 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-check mr-2"></i>Save</button>
+                                    <i class="fa fa-check mr-2"></i>Save
+                                </button>
                             </div>
                         </div>
                     </form>
