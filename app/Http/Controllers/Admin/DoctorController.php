@@ -12,12 +12,12 @@ class DoctorController extends Controller
     public function index()
     {
         $doctors = Doctor::all();
-        return view('dashboard.admin.index', compact('doctors'));
+        return view('dashboard.admin.doctors.index', compact('doctors'));
     }
 
     public function create()
     {
-        return view('dashboard.admin.create');
+        return view('dashboard.admin.doctors.create');
     }
 
     public function store(Request $request)
@@ -66,7 +66,7 @@ class DoctorController extends Controller
     public function show(string $id)
     {
         $doctor = Doctor::findOrFail($id);
-        return view('dashboard.admin.show', compact('doctor'));
+        return view('dashboard.admin.doctors.show', compact('doctor'));
     }
 
     public function edit($id)

@@ -69,6 +69,7 @@ License: https://webthemez.com/license
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
+          <li class="menu-active"><a href="{{ url()->current() }}/login">Login</a></li>
           <li class="menu-active"><a href="#body">Home</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#services">Services</a></li>

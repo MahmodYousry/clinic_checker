@@ -41,7 +41,7 @@
                                 <i class="nav-main-link-icon fa fa-user-md"></i>
                                 <span class="nav-main-link-name">Doctors</span>
                             </a>
-                            <a class="nav-main-link" href="{{ route('manage_patients') }}">
+                            <a class="nav-main-link" href="{{ route('patient.index') }}">
                                 <i class="nav-main-link-icon fa fa-user-nurse"></i>
                                 <span class="nav-main-link-name">Patients</span>
                             </a>
