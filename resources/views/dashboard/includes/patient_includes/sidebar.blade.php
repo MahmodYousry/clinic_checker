@@ -36,7 +36,7 @@
                                 <i class="nav-main-link-icon si si-speedometer"></i>
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
-                            <a class="nav-main-link" href="{{ route('patient_blog.index') }}">
+                            <a class="nav-main-link" href="{{ route('patient_articles.index') }}">
                                 <i class="nav-main-link-icon fa fa-newspaper"></i>
                                 <span class="nav-main-link-name">Articles</span>
                             </a>

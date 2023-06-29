@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\DoctorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CheckupController;
 use App\Http\Controllers\PatientBlogController;
+use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Patient\ArticleController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Patient\HomeController as PatientHomeController;
 
@@ -47,7 +48,7 @@ Route::prefix('/patient')->group(function () {
     //Route::get('/response', [CheckupController::class, 'patientReport'])->name('response');
 
     // patient blog
-    Route::resource('/patient_blog', PatientBlogController::class);
+    Route::resource('/patient_articles', ArticleController::class);
     Route::resource('/patient', PatientHomeController::class);
     Route::resource('/checkup', CheckupController::class);
 
