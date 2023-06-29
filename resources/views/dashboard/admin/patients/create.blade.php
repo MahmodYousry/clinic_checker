@@ -28,12 +28,51 @@
         <!-- END Hero -->
 
         <div class="content">
+            {{-- errors And Alerts --}}
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <p class="mb-0">{{ $error }}</p>
+                    </div>
+                @endforeach
+            @endif
+            @if(session('success'))
+                <div class="alert alert-success d-flex align-items-center animated fadeInDown" role="alert">
+                    <div class="flex-00-auto">
+                        <i class="fa fa-fw fa-check"></i>
+                    </div>
+                    <div class="flex-fill ml-3">
+                        <p class="mb-0 text-capitalize">{{ session('success') }}</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger d-flex align-items-center animated fadeInDown" role="alert">
+                    <div class="flex-00-auto">
+                        <i class="far fa-sad-tear fa-fw"></i>
+                    </div>
+                    <div class="flex-fill ml-3">
+                        <p class="mb-0 text-capitalize">{{ session('error') }}</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            @endif
+            {{-- end errors And Alerts --}}
             <div class="block block-rounded">
                 <div class="block-header">
                     <h3 class="block-title">Patient Registration Information</h3>
                 </div>
                 <div class="block-content block-content-full">
-                    <form action="be_forms_elements.html" method="POST">
+                    <form action="{{ route('patient.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-6 col-xl-6">
                                 <div class="form-group">
@@ -51,15 +90,11 @@
                                 <div class="form-group">
                                     <label for="birthdate">Date Of Birth</label>
                                     <input type="text" class="js-flatpickr form-control bg-white" id="birthdate"
-                                        name="birthdate" placeholder="Y-m-d">
+                                        name="date_of_birth" placeholder="Y-m-d">
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address</label>
                                     <textarea class="form-control" id="address" name="address" rows="5" placeholder="Address.."></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="weight">Weight</label>
-                                    <input type="text" class="form-control" id="weight" name="weight" placeholder="Your Weight">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-xl-6">
@@ -77,19 +112,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone1">Phone 1</label>
-                                    <input type="text" class="form-control" id="phone1" name="phone1" placeholder="Your phone Number">
+                                    <input type="text" class="form-control" id="phone1" name="phone_one" placeholder="Your phone Number">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone2">Phone 2</label>
-                                    <input type="text" class="form-control" id="phone2" name="phone2" placeholder="Your second phone Number [optional]">
+                                    <input type="text" class="form-control" id="phone2" name="phone_two" placeholder="Your second phone Number [optional]">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="facebook_profile">Facebook Profile</label>
-                                    <input type="text" class="form-control" id="facebook_profile" name="facebook_profile" placeholder="facebook profile link">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-xl-6">

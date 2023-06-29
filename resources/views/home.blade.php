@@ -48,7 +48,7 @@
         <div class="topnav">
             <a class="active" href="{{ route('home') }}">Home</a>
             <a href="{{ route('admin_home') }}">Admin Dashboard</a>
-            <a href="{{ route('patient.index') }}">Patient Dashboard</a>
+            <a href="{{ route('patientPage.index') }}">Patient Dashboard</a>
             <a href="#about">About</a>
         </div>
     </body>

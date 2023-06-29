@@ -8,6 +8,7 @@ use App\Http\Controllers\PatientBlogController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Patient\ArticleController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Patient\HomeController as PatientHomeController;
 
 /**
@@ -23,17 +24,14 @@ Route::prefix('/admin')->group(function () {
 
     // Ajax Routes Only
     Route::get('/get-active-url', [AdminHomeController::class, 'getActiveUrl'])->name('get_active_url');
-
-    //
     Route::post('/update_api_url', [AdminHomeController::class, 'updateApiUrl'])->name('update_api_url');
 
     Route::get('/apimachin', [AdminHomeController::class, 'apimachin'])->name('apimachin');
     Route::get('/settings', [AdminHomeController::class, 'settings'])->name('settings');
     Route::get('/home', [AdminHomeController::class, 'home'])->name('admin_home');
 
-    Route::get('/patients', [AdminHomeController::class, 'patients'])->name('manage_patients');
-
-    // admin blog
+    // admin resources
+    Route::resource('/patient', PatientController::class);
     Route::resource('/blog', BlogController::class);
     Route::resource('/doctors', DoctorController::class);
 });
@@ -49,7 +47,7 @@ Route::prefix('/patient')->group(function () {
 
     // patient blog
     Route::resource('/patient_articles', ArticleController::class);
-    Route::resource('/patient', PatientHomeController::class);
+    Route::resource('/patientPage', PatientHomeController::class);
     Route::resource('/checkup', CheckupController::class);
 
 });

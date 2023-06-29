@@ -18,7 +18,6 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female']);
             $table->string('photo');
             $table->date('date_of_birth');
-            $table->float('weight', 8, 2);
             $table->string('phone_one');
             $table->string('phone_two');
             $table->string('email');
