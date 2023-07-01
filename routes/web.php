@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CheckupController;
+use App\Http\Controllers\Patient\CheckupController as Examination;
 use App\Http\Controllers\PatientBlogController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Patient\ArticleController;
@@ -42,7 +43,9 @@ Route::prefix('/admin')->group(function () {
 Route::prefix('/patient')->group(function () {
 
     // Image Examine
-    Route::post('/examine', [CheckupController::class, 'examine'])->name('examine');
+    // Route::post('/examine', [CheckupController::class, 'examine'])->name('examine');
+    Route::post('/examine', [Examination::class, 'checkup'])->name('examine');
+
     //Route::get('/response', [CheckupController::class, 'patientReport'])->name('response');
 
     // patient blog

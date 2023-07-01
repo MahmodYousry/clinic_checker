@@ -370,7 +370,7 @@ button.print-button:hover .print-icon::after {
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 mb-5">
                         <div class="w-100 d-flex flex-column justify-content-center align-items-center">
                             <h2>Sample</h2>
-                            <img class="img-thumbnail" src="{{ asset('dashboard/assets/download_1.jpeg') }}" alt="">
+                            <img class="img-thumbnail" src="{{ $imagePath }}" alt="">
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-9 mb-5">
