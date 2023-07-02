@@ -73,6 +73,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 100px;">ID</th>
+                                <th>photo</th>
                                 <th>first name</th>
                                 <th>gender</th>
                                 <th>phone</th>
@@ -83,6 +84,7 @@
                             @foreach ($patients as $patient)
                                 <tr>
                                     <td class="text-center font-size-sm">{{ $loop->iteration }}</td>
+                                    <td class="font-w600 font-size-sm"><img class="img-fluid w-25 rounded img-thumbnail" src="{{ asset('storage/patients_photos/'.$patient->photo) }}" alt=""></td>
                                     <td class="font-w600 font-size-sm">{{ $patient->first_name }}</td>
                                     <td class="d-none d-sm-table-cell font-size-sm">{{ $patient->gender }}</td>
                                     <td class="d-none d-sm-table-cell font-size-sm">{{ $patient->phone_one }}</td>
@@ -108,10 +110,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-
-            <div class="">
-
             </div>
         </div>
 

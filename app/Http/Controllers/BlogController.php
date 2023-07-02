@@ -35,15 +35,34 @@ class BlogController extends Controller
         // Make Folder with doctors_photos if not exist then move the photo there
         $file->storeAs('public/posts_thumbnail', $photoName);
 
-        // Store Every Field
-        $newStore = new Article();
-        $newStore->title        = $request->title;
-        $newStore->cover_image  = $photoName;
-        $newStore->article      = $request->content;
-        $newStore->save();
+        if ($request->has('approve')) {
+            // Store Every Field
+            $newStore = new Article();
+            $newStore->title        = $request->title;
+            $newStore->cover_image  = $photoName;
+            $newStore->article      = $request->content;
+            $newStore->approve      = 1;
 
-        // return redirect to the blog index
-        return redirect()->route('blog.index')->with('success', 'Your Post Has Been Saved Successfuly !');
+            $newStore->save();
+
+            // return redirect to the blog index
+            return redirect()->route('blog.index')->with('success', 'Your Post Has Been Saved Successfuly ! And It Can Be Seen');
+        } else {
+
+            // Store Every Field
+            $newStore = new Article();
+            $newStore->title        = $request->title;
+            $newStore->cover_image  = $photoName;
+            $newStore->article      = $request->content;
+            $newStore->approve      = 0;
+
+            $newStore->save();
+
+            return redirect()->route('blog.index')->with('success', 'Your Post Has Been Saved Successfuly ! And It Cannot Be Seen');
+
+        }
+
+
     }
 
     public function show(string $id)
