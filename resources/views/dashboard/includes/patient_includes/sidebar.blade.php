@@ -38,7 +38,7 @@
                             </a>
                             <a class="nav-main-link" href="{{ route('patient_doctors.index') }}">
                                 <i class="nav-main-link-icon fa fa-user-md"></i>
-                                <span class="nav-main-link-name">Doctors</span>
+                                <span class="nav-main-link-name">Our Doctors</span>
                             </a>
                             <a class="nav-main-link" href="{{ route('patient_articles.index') }}">
                                 <i class="nav-main-link-icon fa fa-newspaper"></i>
