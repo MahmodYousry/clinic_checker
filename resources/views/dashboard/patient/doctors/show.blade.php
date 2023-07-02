@@ -1,4 +1,4 @@
-@extends('layouts.admin_master')
+@extends('layouts.patient_master')
 
 @section('css_adds')
     <!-- Page JS Plugins CSS -->

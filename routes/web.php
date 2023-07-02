@@ -11,6 +11,8 @@ use App\Http\Controllers\Patient\ArticleController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Patient\HomeController as PatientHomeController;
+use App\Http\Controllers\Patient\PatientDoctorsController;
+use App\Models\Patient;
 
 /**
  * Routes
@@ -49,6 +51,7 @@ Route::prefix('/patient')->group(function () {
     //Route::get('/response', [CheckupController::class, 'patientReport'])->name('response');
 
     // patient blog
+    Route::resource('/patient_doctors', PatientDoctorsController::class);
     Route::resource('/patient_articles', ArticleController::class);
     Route::resource('/patientPage', PatientHomeController::class);
     Route::resource('/checkup', CheckupController::class);
