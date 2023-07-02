@@ -54,7 +54,7 @@
         <!-- Page JS Helpers (jQuery Sparkline Plugins) -->
         <script>
             jQuery(function () {
-                One.helpers(['sparkline', 'table-tools-checkable', 'table-tools-sections', 'easy-pie-chart', 'datepicker', 'flatpickr', 'summernote']);
+                One.helpers(['sparkline', 'table-tools-checkable', 'table-tools-sections', 'easy-pie-chart', 'datepicker', 'flatpickr', 'summernote', 'magnific-popup']);
             });
         </script>
     </body>

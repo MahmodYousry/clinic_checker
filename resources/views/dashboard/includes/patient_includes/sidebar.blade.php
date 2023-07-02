@@ -14,7 +14,7 @@
             <!-- Side Header -->
             <div class="content-header bg-white-5">
                 <!-- Logo -->
-                <a class="font-w600 text-dual" href="">
+                <a class="font-w600 text-dual" href="{{ route('patientPage.index') }}">
                     <span class="smini-visible">
                         <i class="fa fa-circle-notch text-primary"></i>
                     </span>
@@ -32,9 +32,13 @@
                 <div class="content-side">
                     <ul class="nav-main">
                         <li class="nav-main-item py-3">
-                            <a class="nav-main-link" href="{{ route('patient.index') }}">
+                            <a class="nav-main-link" href="{{ route('patientPage.index') }}">
                                 <i class="nav-main-link-icon si si-speedometer"></i>
                                 <span class="nav-main-link-name">Dashboard</span>
+                            </a>
+                            <a class="nav-main-link" href="{{ route('patient_doctors.index') }}">
+                                <i class="nav-main-link-icon fa fa-user-md"></i>
+                                <span class="nav-main-link-name">Doctors</span>
                             </a>
                             <a class="nav-main-link" href="{{ route('patient_articles.index') }}">
                                 <i class="nav-main-link-icon fa fa-newspaper"></i>
