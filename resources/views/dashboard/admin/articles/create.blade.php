@@ -88,6 +88,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="d-block">Visibility</label>
+                                <div class="custom-control custom-switch custom-control-inline custom-control-lg">
+                                    <input type="checkbox" class="custom-control-input" id="approve" name="approve" checked>
+                                    <label class="custom-control-label" for="approve">Visible</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="content">Article Content</label>
                                 <textarea class="form-control js-summernote" id="content" name="content" rows="4" placeholder="Feel Free To Write Anything"></textarea>
                             </div>

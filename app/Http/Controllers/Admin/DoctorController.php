@@ -72,7 +72,7 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = Doctor::findOrFail($id);
-        return view('dashboard.admin.edit', compact('doctor'));
+        return view('dashboard.admin.doctors.edit', compact('doctor'));
     }
 
     public function update(Request $request, string $id)

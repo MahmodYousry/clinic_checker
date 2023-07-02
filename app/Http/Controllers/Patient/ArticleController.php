@@ -11,7 +11,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $posts = Article::all();
+        $posts = Article::where('approve', 1)->get();
         return view('dashboard.patient.articles.index', compact('posts'));
     }
 
