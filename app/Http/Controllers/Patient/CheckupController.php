@@ -13,13 +13,11 @@ class CheckupController extends Controller
     }
     public function checkup(Request $request)
     {
-        $imagePath = $this->handle->saveImage($request);
-
-        $disease = $this->handle->analysis($imagePath, $request);
+        // $disease = ;
 
         // $patientReport = $this->handle->buildPatientReport($imagePath, $disease);
-
+        // $patientReport = "aaa";
         // return view('dashboard.patient.checkup-result', compact('patientReport'));
-        return $disease;
+        return $this->handle->analysis($request);
     }
 }
