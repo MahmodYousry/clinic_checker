@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Patient;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repos\Checkup;
+use Exception;
+use Illuminate\Support\Facades\Response;
+
 class CheckupController extends Controller
 {
     protected Checkup $handle;
@@ -13,11 +16,11 @@ class CheckupController extends Controller
     }
     public function checkup(Request $request)
     {
-        // $disease = ;
+        try{
+            return $this->handle->analysis($request);
 
-        // $patientReport = $this->handle->buildPatientReport($imagePath, $disease);
-        // $patientReport = "aaa";
-        // return view('dashboard.patient.checkup-result', compact('patientReport'));
-        return $this->handle->analysis($request);
+        }catch(Exception $e){
+            return Redirect()->back()->with("error","Un Expected Error Please chech Ngrok Url Or Api Link");
+        }
     }
 }
