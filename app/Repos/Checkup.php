@@ -115,7 +115,7 @@ class Checkup
         $startTime = Carbon::createFromFormat('Y-m-d', $date_of_examination);
         $ago = $startTime->diffForHumans(Carbon::now());
         // ------------------------ end extra
-        // return json_encode([$sample, $disease, $date_of_examination, $ago, $patient_data]);
-        return view('dashboard.patient.checkup-result', compact(['sample','disease', 'date_of_examination', 'ago', 'patient_data', 'disease_article']));
+        return json_encode(["sample" => $sample, "disease" => $disease, "date_of_examination" => $date_of_examination, "taken_since" => $ago, "patient" => $patient_data]);
+        // return view('dashboard.patient.checkup-result', compact(['sample','disease', 'date_of_examination', 'ago', 'patient_data', 'disease_article']));
   }
 }
