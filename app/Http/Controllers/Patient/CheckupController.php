@@ -16,13 +16,31 @@ class CheckupController extends Controller
     }
 
 
+    // public function saveImage($request): string
+    // {
+    //     // validation Image
+    //     $validation = $request->validate([
+    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     ]);
+
+    //     // Save Image In Storage
+    //     $imageName = time() . '.' . $request->image->extension();
+    //     $file = $request->file('image');
+
+    //     // Make Folder with doctors_photos if not exist then move the photo there
+    //     $file->storeAs('public/samples', $imageName);
+
+    //     //Get Image Path
+    //     return $imageName;
+    // }
+
     public function saveImage($request): string
     {
         /**
          *         validation Image
          */
         $validation = $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         /**
@@ -53,7 +71,7 @@ class CheckupController extends Controller
 
     public function checkup(Request $request)
     {
-        // try{
+        try{
         // return $this->handle->analysis($request)
         $imageName = $this->saveImage($request);
         $sample = $this->fetchImage($imageName);
@@ -80,8 +98,8 @@ class CheckupController extends Controller
             ]
         );
 
-        // }catch(Exception $e){
-        //     return Redirect()->back()->with("error","Un Expected Error Please chech Ngrok Url Or Api Link");
-        // }
+        } catch (Exception $e) {
+            return "Un Expected Error Please chech Ngrok Url Or Api Link";
+        }
     }
 }
