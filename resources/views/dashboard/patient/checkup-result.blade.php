@@ -333,10 +333,6 @@ button.print-button:hover .print-icon::after {
 
 @section('content')
 <main id="main-container">
-    <!-- Loader -->
-    <div id="my-loader" class="layout-loader">
-        <i class="fa fa-close"></i>
-    </div>
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -370,7 +366,7 @@ button.print-button:hover .print-icon::after {
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 mb-5">
                         <div class="w-100 d-flex flex-column justify-content-center align-items-center">
                             <h2>Sample</h2>
-                            <img class="img-thumbnail" src="{{ $imagePath }}" alt="">
+                            <img class="img-thumbnail" src="" alt="">
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-9 mb-5">
@@ -382,7 +378,7 @@ button.print-button:hover .print-icon::after {
                     <div class="col-md-12">
                         <h4 class="text-capitalize fw-bold">Some information About this disease</h4>
                         <div class="report-box">
-                            <h4 class="text-capitalize headStyle mb-5">Disease Name : <span class="dis_name">Cytice anything</span></h4>
+                            <h4 class="text-capitalize headStyle mb-5">Disease Name : <span class="dis_name">{{$disease}}</span></h4>
 
                             <h4 class="text-capitalize headStyle">What is <span class="dis_name">Cytice anything</span> ?</h4>
 
@@ -538,13 +534,3 @@ button.print-button:hover .print-icon::after {
 </main>
 @endsection
 
-
-@section('scripts')
-<script>
-    var pageLoader = document.getElementById('my-loader');
-    window.onload = setTimeout(function () {
-        pageLoader.classList.add('layout-hide');
-    }, 3000);
-
-</script>
-@endsection

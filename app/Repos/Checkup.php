@@ -3,9 +3,14 @@
 namespace App\Repos;
 
 use App\Models\ApiLink;
+use App\Models\Article;
+use App\Models\CheckupDetails;
 use App\Models\Disease;
+use App\Models\Patient;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class Checkup
 {
@@ -32,43 +37,46 @@ class Checkup
         /**
          *         Get Image Path
          */
-        $path = storage_path('app\public\samples\\' . $imageName);
-        $imagePath = str_replace('\\', '/', $path);
-        return $imagePath;
+        // $path = storage_path('app\public\samples\\' . $imageName);
+        // $imagePath = str_replace('\\', '/', $path);
+        return $imageName;
     }
     public function getMLAPI()
     {
         // api link of machine learning model
-        return ApiLink::findOrFail(1)->link;
+        return ApiLink::findOrFail(1)->link . "/analysis/process/";
     }
-    public function fetchImage($imagePath)
+    public function saveResult($now, $disease, $imageName, $patientId)
+    {
+        $store = new CheckupDetails();
+        $store->date_of_examination = $now;
+        $removedString = str_replace(['["', '"]'], '', $disease);
+        $store->disease = $removedString;
+        $store->image_name = $imageName;
+        $store->patient_id = $patientId;
+        $store->save();
+        return CheckupDetails::where('image_name', $imageName)->first();
+    }
+    public function fetchImage($image_name)
     {
         //? image itself
+        $imagePath = storage_path('app\public\samples\\' . $image_name);
         return $imagePath;
     }
-    public function analysis(String $imagePath,$request) :string
+    public function analysis($request) :string
     {
         $mlAPI = $this->getMLAPI();
         // $image = $this->fetchImage($imagePath);
         //? (take Machine Learning API Url) , Send -(for it) the Image - (It Self) as external api) and (remains 10 - 20 - 30 seconds and returns => (disease Name))
-        // return $this->getMLAPI();
         // Get the file from the request
         $file = $request->file('image');
-
-        // Create a new GuzzleHttp client
-        $client = new Client();
-
-        // Get the file from the request
-        $file = $request->file('image');
-
         // Read the contents of the image file
         $contents = file_get_contents($file->getPathname());
-
         // Create a new GuzzleHttp client
         $client = new Client();
-
-        // Send a POST request to the external API
-        $response = $client->request('POST', 'https://9fbc-197-39-222-67.ngrok-free.app/analysis/process/', [
+        // // Send a POST request to the external API
+        ini_set('max_execution_time', 300);
+        $response = $client->request('POST', "$mlAPI", [
             'multipart' => [
                 [
                     'name' => 'image',
@@ -77,19 +85,14 @@ class Checkup
                 ],
             ],
         ]);
-
-        // Handle the API response
+        // // Handle the API response
         $statusCode = $response->getStatusCode();
         $responseBody = $response->getBody()->getContents();
-
-        // Process the response as needed
-        // ...
-
-        // Return a response
-        return response()->json([
-            'status' => $statusCode,
-            'body' => $responseBody,
-        ]);
+        $imageName = $this->saveImage($request);
+        $patient = $this->fetchPatientData();
+        $date_created = Carbon::now()->toDateTimeString();
+        $result = $this->saveResult($date_created, "$responseBody", "$imageName", $patient);
+        return $this->buildPatientReport($result);
     }
     public function diseaseTreatment(String $disease)
     {
@@ -98,15 +101,21 @@ class Checkup
     }
     public function fetchPatientData()
     {
-        $patient = Auth::user();
-        return $patient;
+        $patient = Patient::findOrFail(1);
+        return $patient->id;
     }
-    public function buildPatientReport(String $imagePath, String $disease)
+    public function buildPatientReport($checkupResult)
     {
-        // $this->fetchImage($imagePath) => Fetch Image
-        // $this->diseaseTreatment($disease) => Return all related to this disease
-        // $this->fetchPatientData() => Fetch Patient Data (Name , Age)
-        // return array($imagePath, $disease, $fetchPatientData, $diseaseTreatment);
-
-   }
+        $sample = $this->fetchImage($checkupResult->image_name);
+        $patient_data = Patient::findOrFail($checkupResult->patient_id);
+        $disease = $checkupResult->disease;
+        $disease_article = Article::where('title', $checkupResult->disease)->first();
+        $date_of_examination = $checkupResult->date_of_examination;
+        // extra
+        $startTime = Carbon::createFromFormat('Y-m-d', $date_of_examination);
+        $ago = $startTime->diffForHumans(Carbon::now());
+        // ------------------------ end extra
+        return json_encode(["sample" => $sample, "disease" => $disease, "date_of_examination" => $date_of_examination, "taken_since" => $ago, "patient" => $patient_data]);
+        // return view('dashboard.patient.checkup-result', compact(['sample','disease', 'date_of_examination', 'ago', 'patient_data', 'disease_article']));
+  }
 }

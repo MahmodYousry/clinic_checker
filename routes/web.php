@@ -45,7 +45,6 @@ Route::prefix('/admin')->group(function () {
 Route::prefix('/patient')->group(function () {
 
     // Image Examine
-    // Route::post('/examine', [CheckupController::class, 'examine'])->name('examine');
     Route::post('/examine', [Examination::class, 'checkup'])->name('examine');
 
     //Route::get('/response', [CheckupController::class, 'patientReport'])->name('response');
