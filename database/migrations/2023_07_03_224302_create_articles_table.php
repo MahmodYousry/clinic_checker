@@ -17,11 +17,6 @@ return new class extends Migration
             $table->string('cover_image');
             $table->longText('article');
             $table->boolean('approve')->default(1);
-            $table->foreignId('disease_id')
-                ->constrained('diseases')
-                ->onUpdate('cascade')
-                ->onDelete('cascade')
-                ->default(1);
             $table->timestamps();
         });
     }
