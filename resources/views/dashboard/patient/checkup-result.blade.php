@@ -333,10 +333,6 @@ button.print-button:hover .print-icon::after {
 
 @section('content')
 <main id="main-container">
-    <!-- Loader -->
-    <div id="my-loader" class="layout-loader">
-        <i class="fa fa-close"></i>
-    </div>
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -538,13 +534,3 @@ button.print-button:hover .print-icon::after {
 </main>
 @endsection
 
-
-@section('scripts')
-<script>
-    var pageLoader = document.getElementById('my-loader');
-    window.onload = setTimeout(function () {
-        pageLoader.classList.add('layout-hide');
-    }, 3000);
-
-</script>
-@endsection
