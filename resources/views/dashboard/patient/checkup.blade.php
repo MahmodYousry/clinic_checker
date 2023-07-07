@@ -119,11 +119,42 @@
             border: 0;
             transition: all .2s ease;
         }
+
+
+        .report-box .img-overlay {
+            transition: all 1s ease 0s;
+        }
+
+        .report-box .img-overlay::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            height: 220px;
+            width: 220px;
+            background: rgba(0,0,0,.7);
+            z-index: 2;
+            transform: translatex(-50%);
+            opacity: 0;
+            transition: all 1s ease 0s;
+        }
+
+        .report-box .treatment_medicine:hover .img-overlay::after {
+            opacity: 1;
+        }
+
     </style>
 @endsection
 
 @section('content')
     <main id="main-container">
+
+        <!-- Loader -->
+        <div id="my-loader" class="layout-loader">
+            <i class="fa fa-close"></i>
+        </div>
+        <!-- end Loader -->
 
         <!-- Hero -->
         <div class="bg-body-light">
@@ -196,39 +227,38 @@
                         @endif
                         <div class="block-content">
 
-                            <h3 class="text-center m-0 text-capitalize border-bottom pb-2 m-auto mb-4">Kindly Uplaod Your
-                                Photo</h3>
+                            <h3 class="text-center m-0 text-capitalize border-bottom pb-2 m-auto mb-4">Kindly Uplaod Your Photo</h3>
 
-                            <form action="{{ route('examine') }}" method="post" enctype="multipart/form-data">
+                            <form id="submitForm" enctype="multipart/form-data" method="POST">
                                 @csrf
                                 <div class="file-upload">
-                                    <button class="file-upload-btn d-none" type="button"
-                                        onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                                    <button class="file-upload-btn d-none" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
 
                                     <div class="image-upload-wrap">
-                                        <input class="file-upload-input" name="image" type='file'
+                                        <input id="patientImage" class="file-upload-input" name="image" type='file'
                                             onchange="readURL(this);" accept="image/*" />
                                         <div class="drag-text">
                                             <h3>Drag and drop a file or select add Image</h3>
                                         </div>
                                     </div>
+
                                     <div class="file-upload-content">
-                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <img class="file-upload-image" src="#" name="patient_image" alt="your image" />
                                         <div class="image-title-wrap">
-                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove
-                                                <span class="image-title"><i class="si si-close"></i></span></button>
+                                            <button type="button" onclick="removeUpload()" class="remove-image">
+                                                Remove <span class="image-title"><i class="si si-close"></i></span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group pt-4">
-                                    <button type="submit"
-                                        class="btn btn-primary mr-1 text-capitalize d-block m-auto p-3 px-5"
-                                        style="font-size: 1.5rem;">
-                                        <i class="si si-settings"></i>
-                                        analysis It</button>
+                                    <button type="submit" class="btn btn-primary mr-1 text-capitalize d-block m-auto p-3 px-5" style="font-size: 1.5rem;">
+                                        <i class="si si-settings"></i> analysis It
+                                    </button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -242,7 +272,7 @@
 
 
 @section('scripts')
-    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -270,11 +300,44 @@
             $('.file-upload-content').hide();
             $('.image-upload-wrap').show();
         }
+
         $('.image-upload-wrap').bind('dragover', function() {
             $('.image-upload-wrap').addClass('image-dropping');
         });
+
         $('.image-upload-wrap').bind('dragleave', function() {
             $('.image-upload-wrap').removeClass('image-dropping');
         });
+
+        // Form Submit Ajax Call
+        $('#submitForm').on('submit', function (e) {
+            e.preventDefault();
+
+            $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('examine') }}",
+                data: new FormData(this),
+                datatype: "JSON",
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function(data) {
+                    // get the data then turn in into js object to handle
+                    // put the link data into the div as html
+                    console.log(data);
+                }
+            });
+
+        });
+
+        var pageLoader = document.getElementById('my-loader');
+        window.onload = setTimeout(function () {
+            pageLoader.classList.add('layout-hide');
+        }, 3000);
+
     </script>
 @endsection

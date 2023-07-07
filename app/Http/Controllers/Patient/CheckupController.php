@@ -54,31 +54,31 @@ class CheckupController extends Controller
     public function checkup(Request $request)
     {
         // try{
-        // return $this->handle->analysis($request);
+        // return $this->handle->analysis($request)
         $imageName = $this->saveImage($request);
         $sample = $this->fetchImage($imageName);
-            return json_encode(
-                [
-                "sample" => $sample,
-                "disease" => " acne",
-                "date_of_examination" => "2023-07-07",
-                "taken_since" => "1 second before",
-                "patient" => [
-                                "id"=>1,
-                                "first_name"=>"Ahmed",
-                                "last_name"=>"Alaa",
-                                "gender"=>"female",
-                                "photo"=>"Capture-removebg-preview (1).png",
-                                "date_of_birth"=>"2023-07-13",
-                                "phone_one"=>"+201099644971",
-                                "phone_two"=>"+201099644971",
-                                "email"=>"ehab.developer.email@gmail.com",
-                                "address"=>"6 Soliman Gawhar, Boulaq Num.4, Dokki, Giza Governorate 3753002",
-                                "created_at"=>"2023-07-04T13:00:15.000000Z",
-                                "updated_at"=>"2023-07-04T13:40:15.000000Z"
-                            ]
-                ]
-            );
+        return json_encode(
+            [
+            "sample" => $sample,
+            "disease" => " acne",
+            "date_of_examination" => "2023-07-07",
+            "taken_since" => "1 second before",
+            "patient" => [
+                            "id"=>1,
+                            "first_name"=>"Ahmed",
+                            "last_name"=>"Alaa",
+                            "gender"=>"female",
+                            "photo"=>"Capture-removebg-preview (1).png",
+                            "date_of_birth"=>"2023-07-13",
+                            "phone_one"=>"+201099644971",
+                            "phone_two"=>"+201099644971",
+                            "email"=>"ehab.developer.email@gmail.com",
+                            "address"=>"6 Soliman Gawhar, Boulaq Num.4, Dokki, Giza Governorate 3753002",
+                            "created_at"=>"2023-07-04T13:00:15.000000Z",
+                            "updated_at"=>"2023-07-04T13:40:15.000000Z"
+                        ]
+            ]
+        );
 
         // }catch(Exception $e){
         //     return Redirect()->back()->with("error","Un Expected Error Please chech Ngrok Url Or Api Link");
