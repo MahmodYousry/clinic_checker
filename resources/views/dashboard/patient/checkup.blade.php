@@ -144,6 +144,47 @@
             opacity: 1;
         }
 
+        /* start loader */
+
+        .layout-loader {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: all 1s ease 0s;
+        }
+
+        .layout-hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .layout-loader::after {
+            content: '';
+            width: 8rem;
+            height: 8rem;
+            border: 15px solid #ddd;
+            border-top-color: #009758;
+            border-radius: 50%;
+            transition: opacity 0.75s, visibility 0.75s;
+            animation: loading 0.75s ease infinite;
+        }
+
+        @keyframes loading {
+            from { transform: rotate(0turn);}
+            to { transform: rotate(1turn);}
+        }
+
+
+        /* end loader */
+
     </style>
 @endsection
 
@@ -151,7 +192,7 @@
     <main id="main-container">
 
         <!-- Loader -->
-        <div id="my-loader" class="layout-loader">
+        <div id="my-loader" class="layout-loader layout-hide">
             <i class="fa fa-close"></i>
         </div>
         <!-- end Loader -->
@@ -328,16 +369,21 @@
                 success: function(data) {
                     // get the data then turn in into js object to handle
                     // put the link data into the div as html
+                    var pageLoader = document.getElementById('my-loader');
+
+                        pageLoader.classList.remove('layout-hide');
+
+                    window.onload = setTimeout(function () {
+                        window.location.replace("http://www.google.com");
+                    }, 3000);
+
                     console.log(data);
                 }
             });
 
         });
 
-        var pageLoader = document.getElementById('my-loader');
-        window.onload = setTimeout(function () {
-            pageLoader.classList.add('layout-hide');
-        }, 3000);
+
 
     </script>
 @endsection
