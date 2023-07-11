@@ -10,5 +10,8 @@ class Article extends Model
     use HasFactory;
     protected $fillable = ['title', 'cover_image', 'article'];
 
-
+    public function diseases()
+    {
+        return $this->belongsToMany(Disease::class, 'disease_articles');
+    }
 }

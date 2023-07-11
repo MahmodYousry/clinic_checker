@@ -538,32 +538,34 @@
                                 <div class="report-box">
                                     <h4 class="text-capitalize headStyle mb-5">Disease Name : <span class="dis_name">Disease_Name</span></h4>
 
-                                    <h4 class="text-capitalize headStyle">What is <span class="dis_name3">Cytice anything</span> ?</h4>
+                                    <h4 class="text-capitalize headStyle">More Information Related To This Disease</h4>
 
-                                    <p class="mb-3">
-                                        Cystic acne is a type of inflammatory acne that causes painful, pus-filled pimples to form deep under the skin.
-                                        Acne occurs when oil and dead skin cells clog skin pores. With cystic acne,
-                                        bacteria also gets into the pores, causing swelling or inflammation.
-                                    </p>
 
-                                    <p class="mb-5">
-                                        Cystic acne is the most severe type of acne. Acne cysts are often painful and more likely to cause scarring.
-                                    </p>
-
-                                    <h4 class="text-capitalize headStyle">What causes <span class="dis_name3">Cytice anything</span> ?</h4>
-
-                                    <p class="mb-3">
-                                        Pores in the skin can clog with excess oil and dead skin cells, causing pimples. Bacteria can enter the skin pores and get trapped along with the oil and skin cells. The skin reaction causes swelling deep in the skin’s middle layer (the dermis). This infected, red, swollen lump is an acne cyst.
-                                    </p>
-
-                                    <p class="mb-3">
-                                        can clog with excess oil and dead skin cells, causing pimples. Bacteria can enter the skin pores and get trapped along with the oil and skin cells. The skin reaction causes swelling deep in the skin’s middle layer (the dermis). This infected, red, swollen lump is an acne cyst.
-                                    </p>
-                                    <ul class="mb-5">
-                                        <li>Age (teenagers are more prone to cystic acne).</li>
-                                        <li>Family history of cystic acne.</li>
-                                        <li>Hormone changes during the teenage years and sometimes during menopause, and stress.</li>
-                                    </ul>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                                        <div class="block block-rounded">
+                                            <div class="options-container">
+                                                <img class="img-fluid options-item w-100" src="{{ asset('dashboard/assets/download_1.jpeg') }}" alt="">
+                                                <div class="options-overlay bg-black-75">
+                                                    <div class="options-overlay-content">
+                                                        <a class="btn btn-sm btn-light" href="#">View</a>
+                                                        <div class="text-warning mt-3">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <span class="text-white">(480)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="block-content">
+                                                <div class="mb-2">
+                                                    <p class="h4 text-center">Super Badges Pack</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <h4 class="text-capitalize headStyle">Treatment</h4>
 

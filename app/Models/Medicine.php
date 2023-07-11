@@ -9,4 +9,9 @@ class Medicine extends Model
 {
     use HasFactory;
     protected $fillable = ['name','image', 'expected_price'];
+    
+    public function diseases()
+    {
+        return $this->belongsToMany(Disease::class, 'disease_medicines');
+    }
 }

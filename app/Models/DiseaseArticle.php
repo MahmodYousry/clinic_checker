@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DiseaseAdvice extends Model
+class DiseaseArticle extends Model
 {
     use HasFactory;
-    protected $fillable = ['disease_id', 'advice_id'];
+    protected $fillable = ['disease_id', 'article_id'];
 
 }
