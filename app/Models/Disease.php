@@ -11,7 +11,6 @@ class Disease extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
-
     public function advices()
     {
         return $this->belongsToMany(Advice::class, 'adisease_advice');
@@ -19,5 +18,9 @@ class Disease extends Model
     public function medicines()
     {
         return $this->belongsToMany(Medicine::class, 'disease_medicines');
+    }
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class, 'adisease_articles');
     }
 }

@@ -8,10 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DiseaseMedicine extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
+    protected $fillable = ['disease_id', 'medicine_id'];
 
-    public function articles(): BelongsTo
-    {
-        return $this->hasMany(Article::class);
-    }
 }

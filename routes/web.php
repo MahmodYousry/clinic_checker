@@ -1,18 +1,19 @@
 <?php
 
+use App\Models\Patient;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CheckupController;
-use App\Http\Controllers\Patient\CheckupController as Examination;
 use App\Http\Controllers\PatientBlogController;
 use App\Http\Controllers\Admin\DoctorController;
-use App\Http\Controllers\Patient\ArticleController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PatientController;
-use App\Http\Controllers\Patient\HomeController as PatientHomeController;
+use App\Http\Controllers\admin\TreatmentController;
+use App\Http\Controllers\Patient\ArticleController;
 use App\Http\Controllers\Patient\PatientDoctorsController;
-use App\Models\Patient;
+use App\Http\Controllers\Patient\CheckupController as Examination;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Patient\HomeController as PatientHomeController;
 
 /**
  * Routes
@@ -37,6 +38,9 @@ Route::prefix('/admin')->group(function () {
     Route::view('add_medicine', 'livewire.medicine.medicine')->name('manage_medicine');
     Route::view('add_disease', 'livewire.disease.disease')->name('manage_diseases');
     Route::view('add_advice', 'livewire.advice.advice')->name('manage_advices');
+
+    Route::get('/treatment', [TreatmentController::class, 'treatment'])->name('admin.treatment');
+    Route::post('/set_treatment', [TreatmentController::class, 'setTreatment'])->name('admin.set_treatment');
 
     // admin resources
     Route::resource('/patient', PatientController::class);

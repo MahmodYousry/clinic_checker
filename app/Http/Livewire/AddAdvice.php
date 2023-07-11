@@ -22,7 +22,7 @@ class AddAdvice extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, [
-            'title' => 'required|notempty',
+            'title' => 'required',
         ]);
     }
 

@@ -62,6 +62,10 @@
                                 <i class="nav-main-link-icon fa fa-newspaper"></i>
                                 <span class="nav-main-link-name">Write Advices</span>
                             </a>
+                            <a class="nav-main-link" href="{{ route('admin.treatment') }}">
+                                <i class="nav-main-link-icon fa fa-newspaper"></i>
+                                <span class="nav-main-link-name">Treatment Prepare</span>
+                            </a>
                             <hr>
                             <a class="nav-main-link" href="{{ route('settings') }}">
                                 <i class="nav-main-link-icon si si-settings"></i>
