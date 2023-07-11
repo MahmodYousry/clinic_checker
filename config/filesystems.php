@@ -36,6 +36,16 @@ return [
             'throw' => false,
         ],
 
+        'medicine_images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/medicine_images'),
+        ],
+
+        'livewire_temporary' => [
+            'driver' => 'local',
+            'root' => storage_path('app/livewire-tmp'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -49,6 +49,20 @@
                                 <i class="nav-main-link-icon fa fa-newspaper"></i>
                                 <span class="nav-main-link-name">Articles</span>
                             </a>
+                            <hr>
+                            <a class="nav-main-link" href="{{ route('manage_medicine') }}">
+                                <i class="nav-main-link-icon fa fa-newspaper"></i>
+                                <span class="nav-main-link-name">Manange Medicine</span>
+                            </a>
+                            <a class="nav-main-link" href="{{ route('manage_diseases') }}">
+                                <i class="nav-main-link-icon fa fa-newspaper"></i>
+                                <span class="nav-main-link-name">Manange Diseases</span>
+                            </a>
+                            <a class="nav-main-link" href="{{ route('manage_advices') }}">
+                                <i class="nav-main-link-icon fa fa-newspaper"></i>
+                                <span class="nav-main-link-name">Write Advices</span>
+                            </a>
+                            <hr>
                             <a class="nav-main-link" href="{{ route('settings') }}">
                                 <i class="nav-main-link-icon si si-settings"></i>
                                 <span class="nav-main-link-name">Settings</span>

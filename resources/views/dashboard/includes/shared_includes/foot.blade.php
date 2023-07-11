@@ -51,6 +51,7 @@
         <!-- Custom Script Code -->
         @yield('scripts')
 
+
         <!-- Page JS Helpers (jQuery Sparkline Plugins) -->
         <script>
             jQuery(function () {

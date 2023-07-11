@@ -33,6 +33,11 @@ Route::prefix('/admin')->group(function () {
     Route::get('/settings', [AdminHomeController::class, 'settings'])->name('settings');
     Route::get('/home', [AdminHomeController::class, 'home'])->name('admin_home');
 
+    // All Livewire components
+    Route::view('add_medicine', 'livewire.medicine.medicine')->name('manage_medicine');
+    Route::view('add_disease', 'livewire.disease.disease')->name('manage_diseases');
+    Route::view('add_advice', 'livewire.advice.advice')->name('manage_advices');
+
     // admin resources
     Route::resource('/patient', PatientController::class);
     Route::resource('/blog', BlogController::class);
